@@ -13,4 +13,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Todo"
-include ':app'
+
+enableFeaturePreview("VERSION_CATALOGS")
+
+include(
+    ":app", ":feature_todo", ":model-todo"
+)

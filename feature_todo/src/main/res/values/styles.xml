@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Creating custom shape for ShapeableImageViews' within MaterialCardView's -->
+    <style name="ShapeAppearance.Todo.CardView.ImageView">
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomRight">48dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Todo.Indicator" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
