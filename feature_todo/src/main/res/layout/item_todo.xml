@@ -6,6 +6,8 @@
     android:layout_height="100dp"
     android:layout_margin="8dp"
     android:backgroundTint="?attr/colorSurface"
+    android:clickable="true"
+    android:focusable="true"
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,10 +28,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            style="@style/Todo.CardView.Text.Title"
             app:layout_constraintBottom_toTopOf="@id/tv_description"
             app:layout_constraintEnd_toStartOf="@id/color"
             app:layout_constraintStart_toEndOf="@id/rb_is_complete"
@@ -39,10 +38,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:textAppearance="?attr/textAppearanceSubtitle2"
+            style="@style/Todo.CardView.Text.Subtile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/color"
             app:layout_constraintStart_toEndOf="@id/rb_is_complete"
@@ -50,6 +46,7 @@
             tools:text="Subtitle" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"

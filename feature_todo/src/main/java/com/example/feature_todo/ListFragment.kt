@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.feature_todo.adapter.TodoAdapter
 import com.example.feature_todo.databinding.FragmentListBinding
+import com.example.model_todo.response.Todo
 import com.example.model_todo.util.FilterOption
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -16,7 +17,7 @@ class ListFragment : Fragment() {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val todoAdapter by lazy { TodoAdapter() }
+    private val todoAdapter by lazy { TodoAdapter(::editClicked, ::todoClicked) }
     private val todoViewModel by viewModels<TodoViewModel>()
 
     override fun onCreateView(
@@ -45,5 +46,13 @@ class ListFragment : Fragment() {
             // Responds to chip checked/unchecked
             todoViewModel.updateFilter(if (isChecked) FilterOption.COMPLETED else FilterOption.ALL)
         }
+    }
+
+    private fun editClicked(todo: Todo) {
+        // do something...
+    }
+
+    private fun todoClicked(todo: Todo) {
+        // do something...
     }
 }

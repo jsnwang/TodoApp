@@ -7,18 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.feature_todo.databinding.ItemTodoBinding
 import com.example.model_todo.response.Todo
 
-class TodoViewHolder(private val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+class TodoViewHolder(
+    private val binding: ItemTodoBinding,
+    private val editClicked: (Todo) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindTodo(todo: Todo) = with(binding) {
         tvTitle.text = todo.title
         tvDescription.text = todo.content
         rbIsComplete.setBackgroundColor(if (todo.isComplete) Color.GREEN else Color.LTGRAY)
         color.setBackgroundColor(todo.color)
+        tvEdit.setOnClickListener { editClicked(todo) }
     }
 
     companion object {
-        fun newInstance(parent: ViewGroup) = ItemTodoBinding.inflate(
+        fun newInstance(parent: ViewGroup, editClicked: (Todo) -> Unit) = ItemTodoBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
-        ).let { binding -> TodoViewHolder(binding) }
+        ).let { binding -> TodoViewHolder(binding, editClicked) }
     }
 }
