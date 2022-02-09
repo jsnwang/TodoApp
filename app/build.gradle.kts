@@ -42,4 +42,6 @@ android {
 dependencies {
     api(project(":model-todo"))
     api(libs.bundles.main)
+    testImplementation(libs.bundles.test.logic)
+    androidTestImplementation(libs.bundles.test.ui)
 }
