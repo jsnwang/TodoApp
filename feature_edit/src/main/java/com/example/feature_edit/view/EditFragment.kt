@@ -33,4 +33,9 @@ class EditFragment : Fragment() {
     private fun initViews() {
 //        TODO("Not yet implemented")
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

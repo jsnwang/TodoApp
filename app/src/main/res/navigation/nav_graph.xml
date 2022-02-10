@@ -7,5 +7,14 @@
     <include-dynamic
         android:id="@+id/todoGraph"
         app:graphResName="todo_graph"
-        app:moduleName="feature_todo" />
+        app:moduleName="feature_todo" >
+        <action
+            android:id="@+id/action_todoGraph_to_editGraph"
+            app:destination="@id/editGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/editGraph"
+        app:graphResName="edit_graph"
+        app:moduleName="feature_edit" />
 </navigation>
