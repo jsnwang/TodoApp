@@ -64,6 +64,9 @@ feature-todo = [
     "instacart-coil",
 ]
 
+feature-edit = [
+]
+
 feature-details = [
 ]
 

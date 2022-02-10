@@ -1,27 +1,33 @@
 plugins {
+    id("com.android.dynamic-feature")
+    id("org.jetbrains.kotlin.android")
 }
 
-    android {
-    compileSdk = 32
+android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-      applicationId = "com.example.feature_edit"
-    minSdk = 23
-    targetSdk = 32
-    versionCode = 1
-    versionName = "1.0"
-
-      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = libs.versions.minSdk.get().toInt()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-       release {
-           isMinifyEnabled = false
-           proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-       }
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
+
+    buildFeatures {
+        viewBinding = true
     }
+}
+
 
   dependencies {
-
+    implementation(project(":app"))
+    implementation(libs.bundles.feature.edit)
   }
