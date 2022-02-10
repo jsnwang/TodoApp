@@ -64,6 +64,9 @@ feature-todo = [
     "instacart-coil",
 ]
 
+feature-details = [
+]
+
 model-todo = [
     "androidx-room-ktx",
     "squareup-retrofit",
