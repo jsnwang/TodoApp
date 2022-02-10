@@ -29,6 +29,8 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title"
             style="@style/Todo.CardView.Text.Title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/tv_description"
             app:layout_constraintEnd_toStartOf="@id/color"
             app:layout_constraintStart_toEndOf="@id/rb_is_complete"
@@ -39,6 +41,8 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_description"
             style="@style/Todo.CardView.Text.Subtile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/color"
             app:layout_constraintStart_toEndOf="@id/rb_is_complete"
