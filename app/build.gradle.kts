@@ -36,6 +36,7 @@ android {
     }
 
     dynamicFeatures += setOf(":feature_todo")
+    dynamicFeatures += setOf(":feature_details")
 
 }
 
