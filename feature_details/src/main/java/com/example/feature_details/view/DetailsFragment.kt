@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.feature_details.databinding.FragmentDetailsBinding
 import com.example.feature_details.viewmodel.DetailsViewModel
+import com.example.model_todo.response.Todo
 
 class DetailsFragment : Fragment() {
 
@@ -35,6 +36,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun initViews() = with(binding){
+        val id = arguments?.getInt("todoId")!!
         val title = arguments?.getString("todoTitle")
         val content = arguments?.getString("todoContent")
         val complete = arguments?.getBoolean("todoComplete")!!
@@ -43,9 +45,7 @@ class DetailsFragment : Fragment() {
         cbCompleted.isChecked = complete
 
         cbCompleted.setOnClickListener{
-            if(cbCompleted.isChecked){
-
-            }
+            viewModel.checkCompleted(id, cbCompleted.isChecked)
         }
     }
 

@@ -25,4 +25,14 @@ class TodoRepo(private val todoDao: TodoDao) {
         todoDao.insert(todo)
     }
 
+    @WorkerThread
+    suspend fun getTodo(id: String) : Todo {
+        return todoDao.getTodo(id)
+    }
+
+
+    suspend fun setComplete(id: Int, complete: Boolean) {
+        todoDao.setComplete(id, complete)
+    }
+
 }

@@ -1,10 +1,12 @@
 package com.example.feature_details.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model_todo.TodoRepo
 import com.example.model_todo.local.TodoDatabase
+import kotlinx.coroutines.launch
 
 class DetailsViewModel (app: Application) : AndroidViewModel(app) {
 
@@ -12,11 +14,18 @@ class DetailsViewModel (app: Application) : AndroidViewModel(app) {
         TodoRepo(TodoDatabase.getDatabase(app, viewModelScope).todoDao())
     }
 
-    fun showDetails(){
+    fun showDetails() {
 
     }
 
-    fun checkCompleted(complete:Boolean){
-
+    fun checkCompleted(id: Int, checked: Boolean) {
+        viewModelScope.launch {
+//            val todo = todoRepo.getTodo(id)
+//            //todo.isComplete = checked
+            todoRepo.setComplete(id, checked)
+//            Log.d("Todo", todo.toString())
+//
+//
+        }
     }
 }
