@@ -15,4 +15,8 @@ class DetailsViewModel (app: Application) : AndroidViewModel(app) {
     fun showDetails(){
 
     }
+
+    fun checkCompleted(complete:Boolean){
+
+    }
 }

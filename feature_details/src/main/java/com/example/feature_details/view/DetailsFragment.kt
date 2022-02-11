@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.feature_details.databinding.FragmentEditBinding
+import androidx.navigation.fragment.navArgs
+import com.example.feature_details.databinding.FragmentDetailsBinding
 import com.example.feature_details.viewmodel.DetailsViewModel
 
 class DetailsFragment : Fragment() {
@@ -30,11 +31,22 @@ class DetailsFragment : Fragment() {
     }
 
     private fun initObservers() {
-//        TODO("Not yet implemented")
+
     }
 
-    private fun initViews() {
-//        TODO("Not yet implemented")
+    private fun initViews() = with(binding){
+        val title = arguments?.getString("todoTitle")
+        val content = arguments?.getString("todoContent")
+        val complete = arguments?.getBoolean("todoComplete")!!
+        tvTitle.text = title
+        tvContent.text = content
+        cbCompleted.isChecked = complete
+
+        cbCompleted.setOnClickListener{
+            if(cbCompleted.isChecked){
+
+            }
+        }
     }
 
     override fun onDestroyView() {
