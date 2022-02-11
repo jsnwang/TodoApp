@@ -13,6 +13,9 @@
             android:id="@+id/action_todo_to_edit"
             app:destination="@id/editGraph"
             app:enterAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_todoGraph_to_detailsGraph"
+            app:destination="@id/detailsGraph" />
     </include-dynamic>
 
     <include-dynamic
@@ -22,6 +25,13 @@
         <action
             android:id="@+id/action_editGraph_to_todoGraph"
             app:destination="@id/todoGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/detailsGraph"
+        app:graphResName="details_graph"
+        app:moduleName="feature_details" >
+
     </include-dynamic>
 
 </navigation>

@@ -58,6 +58,15 @@ class ListFragment : Fragment() {
     }
 
     private fun todoClicked(todo: Todo) {
-        // do something...
+        findNavController().navigate(
+            resId = com.example.todo.R.id.detailsGraph,
+            args = bundleOf(
+                "todoId" to todo.id,
+                "todoTitle" to todo.title,
+                "todoContent" to todo.content,
+                "todoComplete" to todo.isComplete,
+            )
+        )
+
     }
 }
