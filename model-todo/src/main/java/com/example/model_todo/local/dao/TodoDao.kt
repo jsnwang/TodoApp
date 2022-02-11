@@ -22,7 +22,7 @@ interface TodoDao {
     suspend fun insert(todo: Todo)
 
     @Query("SELECT * FROM todo WHERE id=:id ")
-    suspend fun getTodo(id: String) : Todo
+    suspend fun getTodo(id: Int) : Todo
 
     @Query("UPDATE todo SET isComplete = :complete WHERE id=:id")
     suspend fun setComplete(id: Int, complete: Boolean)
