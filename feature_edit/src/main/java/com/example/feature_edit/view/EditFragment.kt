@@ -34,7 +34,8 @@ class EditFragment : Fragment() {
     }
 
     private fun initViews() {
-//        TODO("Not yet implemented")
+        val todoId = arguments?.getBundle("todoId")?.getString("todoId")
+
     }
 
     private fun confirmDelete() = with(binding) {
