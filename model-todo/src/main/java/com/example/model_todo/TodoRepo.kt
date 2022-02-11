@@ -31,7 +31,7 @@ class TodoRepo(private val todoDao: TodoDao) {
     }
 
     @WorkerThread
-    suspend fun updateTodo(id: Int, title: String, content: String) : Todo {
+    suspend fun updateTodo(id: Int, title: String, content: String) {
         todoDao.updateTodo(id, title, content)
     }
 
