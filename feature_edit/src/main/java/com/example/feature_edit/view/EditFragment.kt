@@ -1,6 +1,8 @@
 package com.example.feature_edit.view
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +33,7 @@ class EditFragment : Fragment() {
     private fun initObservers() {
         confirmDiscard()
         confirmDelete()
+        enableOrDisableSaveButton()
     }
 
     private fun initViews() {
@@ -68,6 +71,25 @@ class EditFragment : Fragment() {
                 }
                 .show()
         }
+    }
+
+    private fun enableOrDisableSaveButton() = with (binding){
+        this?.editTitle?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //   TODO("Not yet implemented")
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // TODO("Not yet implemented")
+            }
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null) {
+                    if (s.isNotEmpty()) this@with?.fabSave?.isEnabled = true
+                }
+                if(s != null) {
+                    if (s.isEmpty()) this@with?.fabSave?.isEnabled = false
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {
