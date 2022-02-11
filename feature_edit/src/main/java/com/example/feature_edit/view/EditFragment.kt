@@ -58,7 +58,7 @@ class EditFragment : Fragment() {
     /** Helper function that navigates to the todoGraph */
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
-        // navigate back to ListFragment with a slide down animation
+        // TODO: add slide down animation
     }
 
     private fun confirmDelete() = with(binding) {
@@ -67,7 +67,6 @@ class EditFragment : Fragment() {
                 .setTitle("Confirm delete")
                 .setMessage("Are you sure you want to delete?")
                 .setPositiveButton("Confirm") { _, _ ->
-                    // navigate back to ListFragment with a slide down animation
                     navigateBack()
                 }
                 .setNegativeButton("Cancel") { _, _ ->
