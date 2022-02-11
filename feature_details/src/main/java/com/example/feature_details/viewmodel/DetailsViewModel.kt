@@ -1,27 +1,31 @@
-package com.example.feature_edit.viewmodel
+package com.example.feature_details.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model_todo.TodoRepo
 import com.example.model_todo.local.TodoDatabase
 import kotlinx.coroutines.launch
 
-class EditViewModel(app: Application) : AndroidViewModel(app) {
+class DetailsViewModel (app: Application) : AndroidViewModel(app) {
+
     private val todoRepo by lazy {
         TodoRepo(TodoDatabase.getDatabase(app, viewModelScope).todoDao())
     }
 
-    fun getTodo(todoId: Int) {
-        viewModelScope.launch {
-            todoRepo.getTodo(todoId)
-        }
+    fun showDetails() {
+
     }
 
-    fun updateTodo(todoId: Int, title: String, content: String) {
+    fun checkCompleted(id: Int, checked: Boolean) {
         viewModelScope.launch {
-            todoRepo.updateTodo(todoId, title, content)
+//            val todo = todoRepo.getTodo(id)
+//            //todo.isComplete = checked
+            todoRepo.setComplete(id, checked)
+//            Log.d("Todo", todo.toString())
+//
+//
         }
     }
-
 }
