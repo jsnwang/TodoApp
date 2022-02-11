@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.feature_edit.databinding.FragmentEditBinding
 
 class EditFragment : Fragment() {
@@ -15,7 +17,7 @@ class EditFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) = FragmentEditBinding.inflate(inflater, container, false).also {
         _binding = it
     }.root
@@ -27,11 +29,44 @@ class EditFragment : Fragment() {
     }
 
     private fun initObservers() {
-//        TODO("Not yet implemented")
+        confirmDiscard()
+        confirmDelete()
     }
 
     private fun initViews() {
 //        TODO("Not yet implemented")
+    }
+
+    private fun confirmDelete() = with(binding) {
+        this?.deleteButton?.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm delete")
+                .setMessage("Are you sure you want to delete?")
+                .setPositiveButton("Confirm") { _, _ ->
+                    // navigate back to ListFragment with a slide down animation
+                    findNavController().navigate(com.example.todo.R.id.todoGraph)
+                }
+                .setNegativeButton("Cancel") { _, _ ->
+
+                }
+                .show()
+        }
+    }
+
+    private fun confirmDiscard() = with(binding) {
+        this?.discardButton?.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm discard")
+                .setMessage("Are you sure you want to discard your changes?")
+                .setPositiveButton("Confirm") { _, _ ->
+                    // navigate back to ListFragment with a slide down animation
+                    findNavController().navigate(com.example.todo.R.id.todoGraph)
+                }
+                .setNegativeButton("Cancel") { _, _ ->
+
+                }
+                .show()
+        }
     }
 
     override fun onDestroyView() {
