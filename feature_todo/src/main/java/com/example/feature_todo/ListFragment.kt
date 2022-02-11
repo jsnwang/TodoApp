@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.feature_todo.adapter.TodoAdapter
 import com.example.feature_todo.databinding.FragmentListBinding
 import com.example.model_todo.response.Todo
@@ -49,7 +51,10 @@ class ListFragment : Fragment() {
     }
 
     private fun editClicked(todo: Todo) {
-        // do something...
+        findNavController().navigate(
+            resId = com.example.todo.R.id.editGraph,
+            args = bundleOf("todoId" to todo.id)
+        )
     }
 
     private fun todoClicked(todo: Todo) {
