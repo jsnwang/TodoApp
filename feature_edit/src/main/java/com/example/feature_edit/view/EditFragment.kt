@@ -55,6 +55,7 @@ class EditFragment : Fragment() {
             }
         }
     }
+
     /** Helper function that navigates to the todoGraph */
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
@@ -98,12 +99,8 @@ class EditFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                if (s != null) {
-                    if (s.isNotEmpty()) this@with.fabSave.isEnabled = true
-                }
-                if (s != null) {
-                    if (s.isEmpty()) this@with.fabSave.isEnabled = false
-                }
+                s?.let { if (s.isNotEmpty()) this@with.fabSave.isEnabled = true }
+                s?.let { if (s.isEmpty()) this@with.fabSave.isEnabled = false }
             }
         })
     }
