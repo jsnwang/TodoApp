@@ -3,7 +3,6 @@ package com.example.feature_edit.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.feature_edit.databinding.FragmentEditBinding
 import com.example.feature_edit.viewmodel.EditViewModel
-import com.example.model_todo.response.Todo
 import kotlinx.coroutines.launch
 
 class EditFragment : Fragment() {
@@ -57,13 +55,14 @@ class EditFragment : Fragment() {
             }
         }
     }
-    // navigate back to ListFragment with a slide down animation
+    /** Helper function that navigates to the todoGraph */
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
+        // navigate back to ListFragment with a slide down animation
     }
 
     private fun confirmDelete() = with(binding) {
-        this?.deleteButton?.setOnClickListener {
+        this.deleteButton.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Confirm delete")
                 .setMessage("Are you sure you want to delete?")
@@ -79,7 +78,7 @@ class EditFragment : Fragment() {
     }
 
     private fun confirmDiscard() = with(binding) {
-        this?.discardButton?.setOnClickListener {
+        this.discardButton.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Confirm discard")
                 .setMessage("Are you sure you want to discard your changes?")
@@ -94,17 +93,17 @@ class EditFragment : Fragment() {
     }
 
     private fun enableOrDisableSaveButton() = with(binding) {
-        this?.editTitle?.addTextChangedListener(object : TextWatcher {
+        this.editTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
                 if (s != null) {
-                    if (s.isNotEmpty()) this@with?.fabSave?.isEnabled = true
+                    if (s.isNotEmpty()) this@with.fabSave.isEnabled = true
                 }
                 if (s != null) {
-                    if (s.isEmpty()) this@with?.fabSave?.isEnabled = false
+                    if (s.isEmpty()) this@with.fabSave.isEnabled = false
                 }
             }
         })
