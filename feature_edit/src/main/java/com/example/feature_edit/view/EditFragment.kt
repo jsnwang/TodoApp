@@ -70,9 +70,7 @@ class EditFragment : Fragment() {
                 .setPositiveButton("Confirm") { _, _ ->
                     navigateBack()
                 }
-                .setNegativeButton("Cancel") { _, _ ->
-
-                }
+                .setNegativeButton("Cancel") { _, _ -> }
                 .show()
         }
     }
@@ -85,9 +83,7 @@ class EditFragment : Fragment() {
                 .setPositiveButton("Confirm") { _, _ ->
                     navigateBack()
                 }
-                .setNegativeButton("Cancel") { _, _ ->
-
-                }
+                .setNegativeButton("Cancel") { _, _ -> }
                 .show()
         }
     }
