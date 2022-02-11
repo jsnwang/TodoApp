@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.feature_edit.databinding.FragmentEditBinding
 import com.example.feature_edit.viewmodel.EditViewModel
+import com.example.model_todo.response.Todo
 import kotlinx.coroutines.launch
 
 class EditFragment : Fragment() {
@@ -44,12 +45,21 @@ class EditFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
+        // TODO: Make the keyboard disappear when user hits enter
         val todoId = arguments?.getInt("todoId")!!
         lifecycleScope.launch {
             val todo = viewModel.getTodo(todoId)
             editTitle.setText(todo.title)
             editContent.setText(todo.content)
+            fabSave.setOnClickListener {
+                viewModel.updateTodo(todoId, editTitle.text.toString(), editContent.text.toString())
+                navigateBack()
+            }
         }
+    }
+    // navigate back to ListFragment with a slide down animation
+    private fun navigateBack() {
+        findNavController().navigate(com.example.todo.R.id.todoGraph)
     }
 
     private fun confirmDelete() = with(binding) {
@@ -59,7 +69,7 @@ class EditFragment : Fragment() {
                 .setMessage("Are you sure you want to delete?")
                 .setPositiveButton("Confirm") { _, _ ->
                     // navigate back to ListFragment with a slide down animation
-                    findNavController().navigate(com.example.todo.R.id.todoGraph)
+                    navigateBack()
                 }
                 .setNegativeButton("Cancel") { _, _ ->
 
@@ -74,8 +84,7 @@ class EditFragment : Fragment() {
                 .setTitle("Confirm discard")
                 .setMessage("Are you sure you want to discard your changes?")
                 .setPositiveButton("Confirm") { _, _ ->
-                    // navigate back to ListFragment with a slide down animation
-                    findNavController().navigate(com.example.todo.R.id.todoGraph)
+                    navigateBack()
                 }
                 .setNegativeButton("Cancel") { _, _ ->
 
