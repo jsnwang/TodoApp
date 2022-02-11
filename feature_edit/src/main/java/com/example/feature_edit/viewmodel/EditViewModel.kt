@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model_todo.TodoRepo
 import com.example.model_todo.local.TodoDatabase
+import com.example.model_todo.response.Todo
 import kotlinx.coroutines.launch
 
 class EditViewModel(app: Application) : AndroidViewModel(app) {
@@ -12,10 +13,8 @@ class EditViewModel(app: Application) : AndroidViewModel(app) {
         TodoRepo(TodoDatabase.getDatabase(app, viewModelScope).todoDao())
     }
 
-    fun getTodo(todoId: Int) {
-        viewModelScope.launch {
-            todoRepo.getTodo(todoId)
-        }
+    suspend fun getTodo(todoId: Int): Todo {
+        return todoRepo.getTodo(todoId)
     }
 
     fun updateTodo(todoId: Int, title: String, content: String) {
