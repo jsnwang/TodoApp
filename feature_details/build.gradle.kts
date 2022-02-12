@@ -29,4 +29,5 @@ android {
 dependencies {
     implementation(project(":app"))
     implementation(libs.bundles.feature.details)
+    implementation("androidx.cardview:cardview:1.0.0")
 }

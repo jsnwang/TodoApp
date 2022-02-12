@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.example.feature_details.databinding.FragmentDetailsBinding
 import com.example.feature_details.viewmodel.DetailsViewModel
-import com.example.model_todo.response.Todo
 
 class DetailsFragment : Fragment() {
 
