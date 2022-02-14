@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +34,8 @@ class DetailsFragment : Fragment() {
     }
 
     private fun initObservers() {
-
+        confirmDiscard()
+        confirmDelete()
     }
 
     private fun initViews() = with(binding){
@@ -47,11 +49,40 @@ class DetailsFragment : Fragment() {
                 viewModel.checkCompleted(todo.id, cbCompleted.isChecked)
             }
         }
-        discardButton.setOnClickListener {
-            findNavController().navigate(com.example.todo.R.id.todoGraph)
+    }
+
+    private fun navigateBack() {
+        findNavController().navigate(com.example.todo.R.id.todoGraph)
+        // TODO: add slide down animation
+    }
+    
+    private fun confirmDelete() = with(binding) {
+        val todoId = arguments?.getInt("todoId")!!
+        this.deleteButton.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm delete")
+                .setMessage("Are you sure you want to delete?")
+                .setPositiveButton("Confirm") { _, _ ->
+                    viewModel.deleteTodo(todoId)
+                    navigateBack()
+                }
+                .setNegativeButton("Cancel") { _, _ -> }
+                .show()
         }
     }
 
+    private fun confirmDiscard() = with(binding) {
+        this.discardButton.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirm discard")
+                .setMessage("Are you sure you want to discard your changes?")
+                .setPositiveButton("Confirm") { _, _ ->
+                    navigateBack()
+                }
+                .setNegativeButton("Cancel") { _, _ -> }
+                .show()
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -23,4 +23,10 @@ class EditViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    fun deleteTodo(todoId: Int) {
+        viewModelScope.launch {
+            todoRepo.deleteTodo(todoId)
+        }
+    }
+
 }

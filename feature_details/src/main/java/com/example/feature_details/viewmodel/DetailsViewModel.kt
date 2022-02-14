@@ -24,4 +24,10 @@ class DetailsViewModel (app: Application) : AndroidViewModel(app) {
         return todoRepo.getTodo(todoId)
     }
 
+    fun deleteTodo(todoId: Int) {
+        viewModelScope.launch {
+            todoRepo.deleteTodo(todoId)
+        }
+    }
+
 }
