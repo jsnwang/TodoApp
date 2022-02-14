@@ -51,7 +51,7 @@ abstract class TodoDatabase : RoomDatabase() {
                 // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-//                        populateDatabase(database.todoDao())
+                        populateDatabase(database.todoDao())
                     }
                 }
             }
@@ -61,19 +61,19 @@ abstract class TodoDatabase : RoomDatabase() {
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-//        suspend fun populateDatabase(todoDao: TodoDao) {
-//            // Start the app with a clean database every time.
-//            // Not needed if you only populate on creation.
-//            todoDao.deleteAll()
-//
-//            listOf(
-//                Todo(title = "Title 1", content = "Lorem Ipsum Dipsum TipSum"),
-//                Todo(title = "Title 2", content = "Lorem Ipsum Dipsum TipSum"),
-//                Todo(title = "Title 3", content = "Lorem Ipsum Dipsum TipSum", isComplete = true),
-//                Todo(title = "Title 4", content = "Lorem Ipsum Dipsum TipSum"),
-//                Todo(title = "Title 5", content = "Lorem Ipsum Dipsum TipSum"),
-//            ).forEach { todo -> todoDao.insert(todo) }
+        suspend fun populateDatabase(todoDao: TodoDao) {
+            // Start the app with a clean database every time.
+            // Not needed if you only populate on creation.
+            todoDao.deleteAll()
 
-        //}
+            listOf(
+                Todo(title = "Title 1", content = "Lorem Ipsum Dipsum TipSum"),
+                Todo(title = "Title 2", content = "Lorem Ipsum Dipsum TipSum"),
+                Todo(title = "Title 3", content = "Lorem Ipsum Dipsum TipSum", isComplete = true),
+                Todo(title = "Title 4", content = "Lorem Ipsum Dipsum TipSum"),
+                Todo(title = "Title 5", content = "Lorem Ipsum Dipsum TipSum"),
+            ).forEach { todo -> todoDao.insert(todo) }
+
+        }
     }
 }
