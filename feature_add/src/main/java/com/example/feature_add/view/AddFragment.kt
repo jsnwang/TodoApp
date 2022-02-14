@@ -40,14 +40,12 @@ class AddFragment : Fragment() {
 
     private fun initObservers() {
         confirmDiscard()
-        confirmDelete()
         enableOrDisableSaveButton()
     }
 
     private fun initViews() = with(binding) {
         // TODO: Make the keyboard disappear when user hits enter
         fabSave.setOnClickListener {
-            // Create a new todo
             val todo = Todo(
                 title = addTitle.text.toString(),
                 content = addContent.text.toString()
@@ -63,19 +61,6 @@ class AddFragment : Fragment() {
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
         // TODO: add slide down animation
-    }
-
-    private fun confirmDelete() = with(binding) {
-        this.deleteButton.setOnClickListener {
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle("Confirm delete")
-                .setMessage("Are you sure you want to delete?")
-                .setPositiveButton("Confirm") { _, _ ->
-                    navigateBack()
-                }
-                .setNegativeButton("Cancel") { _, _ -> }
-                .show()
-        }
     }
 
     private fun confirmDiscard() = with(binding) {
