@@ -45,13 +45,14 @@ class ListFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         rvTodos.adapter = todoAdapter
-//        val swipeToDelete = object : SwipeToDelete() {
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                // TODO: Remove the todo
-//            }
-//        }
-//        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
-//        itemTouchHelper.attachToRecyclerView(rvTodos)
+        val swipeToDelete = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val todo = todoAdapter.getTodoAt(viewHolder.absoluteAdapterPosition)
+                todoViewModel.deleteTodo(todo.id)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(rvTodos)
 
         chipCompleted.setOnCheckedChangeListener { _, isChecked ->
             // Responds to chip checked/unchecked
