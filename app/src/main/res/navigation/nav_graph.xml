@@ -32,6 +32,9 @@
         app:graphResName="details_graph"
         app:moduleName="feature_details" >
 
+        <action
+            android:id="@+id/action_detailsGraph_to_todoGraph"
+            app:destination="@id/todoGraph" />
     </include-dynamic>
 
 </navigation>
