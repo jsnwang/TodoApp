@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.feature_edit.databinding.FragmentEditBinding
 import com.example.feature_edit.viewmodel.EditViewModel
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.launch
 
 class EditFragment : Fragment() {
@@ -36,6 +37,10 @@ class EditFragment : Fragment() {
         initObservers()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        editFragmentAnimation()
+    }
     private fun initObservers() {
         confirmDiscard()
         confirmDelete()
@@ -102,6 +107,14 @@ class EditFragment : Fragment() {
         })
     }
 
+    private fun editFragmentAnimation() {
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = 2000.toLong()
+        }
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Y, true).apply {
+            duration = 2000.toLong()
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
