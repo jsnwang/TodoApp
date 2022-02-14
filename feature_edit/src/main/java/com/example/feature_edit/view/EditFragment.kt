@@ -64,11 +64,13 @@ class EditFragment : Fragment() {
     }
 
     private fun confirmDelete() = with(binding) {
+        val todoId = arguments?.getInt("todoId")!!
         this.deleteButton.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Confirm delete")
                 .setMessage("Are you sure you want to delete?")
                 .setPositiveButton("Confirm") { _, _ ->
+                    viewModel.deleteTodo(todoId)
                     navigateBack()
                 }
                 .setNegativeButton("Cancel") { _, _ -> }
