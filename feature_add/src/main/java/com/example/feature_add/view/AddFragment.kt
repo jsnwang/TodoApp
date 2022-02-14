@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.room.PrimaryKey
 import com.example.feature_add.databinding.FragmentAddBinding
 import com.example.feature_add.viewmodel.AddViewModel
 import com.example.model_todo.response.Todo
@@ -65,7 +64,7 @@ class AddFragment : Fragment() {
 
     private fun confirmDiscard() = with(binding) {
         this.discardButton.setOnClickListener {
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            AlertDialog.Builder(requireContext())
                 .setTitle("Confirm discard")
                 .setMessage("Are you sure you want to discard your changes?")
                 .setPositiveButton("Confirm") { _, _ ->
