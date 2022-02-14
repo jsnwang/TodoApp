@@ -49,6 +49,7 @@ class ListFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val todo = todoAdapter.getTodoAt(viewHolder.absoluteAdapterPosition)
                 todoViewModel.deleteTodo(todo.id)
+                todoAdapter.notifyItemRemoved(viewHolder.absoluteAdapterPosition)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDelete)

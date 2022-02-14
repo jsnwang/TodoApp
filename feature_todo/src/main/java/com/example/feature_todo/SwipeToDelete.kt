@@ -1,9 +1,5 @@
 package com.example.feature_todo
 
-import android.R
-import android.graphics.Canvas
-import androidx.core.content.ContextCompat
-import androidx.navigation.NavOptions
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
