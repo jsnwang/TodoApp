@@ -1,6 +1,7 @@
 package com.example.feature_todo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,14 @@ class ListFragment : Fragment() {
         chipCompleted.setOnCheckedChangeListener { _, isChecked ->
             // Responds to chip checked/unchecked
             todoViewModel.updateFilter(if (isChecked) FilterOption.COMPLETED else FilterOption.ALL)
+        }
+
+        fabAdd.setOnClickListener{
+
+            findNavController().navigate(
+                resId = com.example.todo.R.id.addGraph,
+
+            )
         }
     }
 
