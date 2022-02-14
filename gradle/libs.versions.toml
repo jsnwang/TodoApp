@@ -70,6 +70,9 @@ feature-edit = [
 feature-details = [
 ]
 
+feature-add = [
+]
+
 model-todo = [
     "androidx-room-ktx",
     "squareup-retrofit",
