@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_todoGraph_to_detailsGraph"
             app:destination="@id/detailsGraph" />
+        <action
+            android:id="@+id/action_todoGraph_to_addGraph"
+            app:destination="@id/addGraph" />
     </include-dynamic>
 
     <include-dynamic
@@ -34,6 +37,16 @@
 
         <action
             android:id="@+id/action_detailsGraph_to_todoGraph"
+            app:destination="@id/todoGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/addGraph"
+        app:graphResName="add_graph"
+        app:moduleName="feature_add" >
+
+        <action
+            android:id="@+id/action_addGraph_to_todoGraph"
             app:destination="@id/todoGraph" />
     </include-dynamic>
 
