@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.feature_details.databinding.FragmentDetailsBinding
 import com.example.feature_details.viewmodel.DetailsViewModel
 
@@ -41,7 +42,9 @@ class DetailsFragment : Fragment() {
         tvTitle.text = title
         tvContent.text = content
         cbCompleted.isChecked = complete
-
+        discardButton.setOnClickListener {
+            findNavController().navigate(com.example.todo.R.id.todoGraph)
+        }
         cbCompleted.setOnClickListener{
             viewModel.checkCompleted(id, cbCompleted.isChecked)
         }
