@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.room.PrimaryKey
 import com.example.feature_add.databinding.FragmentAddBinding
+import com.example.feature_add.viewmodel.AddViewModel
+import com.example.model_todo.response.Todo
 import kotlinx.coroutines.launch
 
 class AddFragment : Fragment() {
@@ -19,7 +22,7 @@ class AddFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
-    //private val viewModel by viewModels<AddViewModel>()
+    private val viewModel by viewModels<AddViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,17 +46,17 @@ class AddFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         // TODO: Make the keyboard disappear when user hits enter
-        //val todoId = arguments?.getInt("todoId")!!
-//        lifecycleScope.launch {
-//            val todo = viewModel.getTodo(todoId)
-//            topAppBar.setBackgroundColor(todo.color)
-//            addTitle.setText(todo.title)
-//            addContent.setText(todo.content)
-//            fabSave.setOnClickListener {
-//                viewModel.updateTodo(todoId, addTitle.text.toString(), addContent.text.toString())
-//                navigateBack()
-//            }
-//        }
+        fabSave.setOnClickListener {
+            // Create a new todo
+            val todo = Todo(
+                title = addTitle.text.toString(),
+                content = addContent.text.toString()
+            )
+            lifecycleScope.launch {
+                viewModel.addTodo(todo)
+                navigateBack()
+            }
+        }
     }
 
     /** Helper function that navigates to the todoGraph */
