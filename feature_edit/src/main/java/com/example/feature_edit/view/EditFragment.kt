@@ -47,6 +47,7 @@ class EditFragment : Fragment() {
         val todoId = arguments?.getInt("todoId")!!
         lifecycleScope.launch {
             val todo = viewModel.getTodo(todoId)
+            topAppBar.setBackgroundColor(todo.color)
             editTitle.setText(todo.title)
             editContent.setText(todo.content)
             fabSave.setOnClickListener {

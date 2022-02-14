@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model_todo.TodoRepo
 import com.example.model_todo.local.TodoDatabase
+import com.example.model_todo.response.Todo
 import kotlinx.coroutines.launch
 
 class DetailsViewModel (app: Application) : AndroidViewModel(app) {
@@ -18,4 +19,9 @@ class DetailsViewModel (app: Application) : AndroidViewModel(app) {
             todoRepo.setComplete(id, checked)
         }
     }
+
+    suspend fun getTodo(todoId: Int): Todo {
+        return todoRepo.getTodo(todoId)
+    }
+
 }
