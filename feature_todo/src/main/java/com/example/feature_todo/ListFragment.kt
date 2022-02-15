@@ -47,11 +47,11 @@ class ListFragment : Fragment() {
         rvTodos.adapter = todoAdapter
         val swipeToDelete = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val todo = todoAdapter.getTodoAt(viewHolder.absoluteAdapterPosition)
+                val todo = todoAdapter.getTodoAt(viewHolder.adapterPosition)
                 todoViewModel.deleteTodo(todo.id)
-                todoAdapter.notifyItemRemoved(viewHolder.absoluteAdapterPosition)
             }
         }
+
         val itemTouchHelper = ItemTouchHelper(swipeToDelete)
         itemTouchHelper.attachToRecyclerView(rvTodos)
 
