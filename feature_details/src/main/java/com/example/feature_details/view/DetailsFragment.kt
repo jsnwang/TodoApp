@@ -59,7 +59,6 @@ class DetailsFragment : Fragment() {
 
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
-        // TODO: add slide down animation
     }
     
     private fun confirmDelete() = with(binding) {

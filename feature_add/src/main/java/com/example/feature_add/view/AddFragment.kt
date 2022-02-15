@@ -43,7 +43,6 @@ class AddFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-        // TODO: Make the keyboard disappear when user hits enter
         fabSave.setOnClickListener {
             val todo = Todo(
                 title = addTitle.text.toString(),
@@ -59,7 +58,6 @@ class AddFragment : Fragment() {
     /** Helper function that navigates to the todoGraph */
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
-        // TODO: add slide down animation
     }
 
     private fun confirmDiscard() = with(binding) {

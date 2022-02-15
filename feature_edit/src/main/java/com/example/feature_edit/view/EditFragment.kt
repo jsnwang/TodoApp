@@ -48,7 +48,6 @@ class EditFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-        // TODO: Make the keyboard disappear when user hits enter
         val todoId = arguments?.getInt("todoId")!!
         lifecycleScope.launch {
             val todo = viewModel.getTodo(todoId)
@@ -65,7 +64,6 @@ class EditFragment : Fragment() {
     /** Helper function that navigates to the todoGraph */
     private fun navigateBack() {
         findNavController().navigate(com.example.todo.R.id.todoGraph)
-        // TODO: add slide down animation
     }
 
     private fun confirmDelete() = with(binding) {
