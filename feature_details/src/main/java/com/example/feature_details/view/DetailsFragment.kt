@@ -71,18 +71,6 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun confirmDiscard() = with(binding) {
-        this.discardButton.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Confirm discard")
-                .setMessage("Are you sure you want to discard your changes?")
-                .setPositiveButton("Confirm") { _, _ ->
-                    navigateBack()
-                }
-                .setNegativeButton("Cancel") { _, _ -> }
-                .show()
-        }
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
