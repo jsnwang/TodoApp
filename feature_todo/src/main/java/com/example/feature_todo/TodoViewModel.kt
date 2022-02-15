@@ -31,13 +31,6 @@ class TodoViewModel(app: Application) : AndroidViewModel(app) {
         todoRepo.getTodosWithFilter(filterOption)
     }.asLiveData()
 
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
-    fun add(todo: Todo) = viewModelScope.launch {
-        todoRepo.insert(todo)
-    }
-
     fun deleteTodo(todoId: Int) {
         viewModelScope.launch {
             todoRepo.deleteTodo(todoId)
