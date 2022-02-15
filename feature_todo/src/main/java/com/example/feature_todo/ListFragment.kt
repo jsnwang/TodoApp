@@ -14,6 +14,7 @@ import com.example.feature_todo.adapter.TodoAdapter
 import com.example.feature_todo.databinding.FragmentListBinding
 import com.example.model_todo.response.Todo
 import com.example.model_todo.util.FilterOption
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -27,7 +28,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) = FragmentListBinding.inflate(
         inflater, container, false
     ).also { _binding = it }.root
@@ -36,6 +37,11 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         todoViewModel.todos.observe(viewLifecycleOwner) { todos -> todoAdapter.submitList(todos) }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        listFragmentAnimation()
     }
 
     override fun onDestroyView() {
@@ -60,11 +66,9 @@ class ListFragment : Fragment() {
             todoViewModel.updateFilter(if (isChecked) FilterOption.COMPLETED else FilterOption.ALL)
         }
 
-        fabAdd.setOnClickListener{
-
+        fabAdd.setOnClickListener {
             findNavController().navigate(
                 resId = com.example.todo.R.id.addGraph,
-
             )
         }
     }
@@ -87,5 +91,11 @@ class ListFragment : Fragment() {
             )
         )
 
+    }
+
+    private fun listFragmentAnimation() {
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Y, true).apply {
+            duration = 2000.toLong()
+        }
     }
 }

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.feature_details.databinding.FragmentDetailsBinding
 import com.example.feature_details.viewmodel.DetailsViewModel
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
@@ -22,7 +23,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) = FragmentDetailsBinding.inflate(inflater, container, false).also {
         _binding = it
     }.root
@@ -37,7 +38,12 @@ class DetailsFragment : Fragment() {
         confirmDelete()
     }
 
-    private fun initViews() = with(binding){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        detailsFragmentAnimation()
+    }
+
+    private fun initViews() = with(binding) {
         lifecycleScope.launch {
             val todo = viewModel.getTodo(arguments?.getInt("todoId")!!)
             tvTitle.text = todo.title
@@ -68,6 +74,15 @@ class DetailsFragment : Fragment() {
                 }
                 .setNegativeButton("Cancel") { _, _ -> }
                 .show()
+        }
+    }
+
+    private fun detailsFragmentAnimation() {
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+            duration = 1500.toLong()
+        }
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+            duration = 1500.toLong()
         }
     }
 
