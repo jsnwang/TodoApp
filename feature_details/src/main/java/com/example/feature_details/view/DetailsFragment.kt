@@ -34,7 +34,6 @@ class DetailsFragment : Fragment() {
     }
 
     private fun initObservers() {
-        confirmDiscard()
         confirmDelete()
     }
 
