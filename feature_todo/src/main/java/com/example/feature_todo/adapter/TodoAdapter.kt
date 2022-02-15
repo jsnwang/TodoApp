@@ -20,4 +20,6 @@ class TodoAdapter(
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.bindTodo(getItem(position))
     }
+
+    fun getTodoAt(position: Int): Todo { return getItem(position) }
 }

@@ -1,7 +1,6 @@
 package com.example.feature_todo
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.feature_todo.adapter.TodoAdapter
 import com.example.feature_todo.databinding.FragmentListBinding
 import com.example.model_todo.response.Todo
@@ -44,6 +45,15 @@ class ListFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         rvTodos.adapter = todoAdapter
+        val swipeToDelete = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val todo = todoAdapter.getTodoAt(viewHolder.adapterPosition)
+                todoViewModel.deleteTodo(todo.id)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(rvTodos)
 
         chipCompleted.setOnCheckedChangeListener { _, isChecked ->
             // Responds to chip checked/unchecked

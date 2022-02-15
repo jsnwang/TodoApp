@@ -39,4 +39,9 @@ class TodoRepo(private val todoDao: TodoDao) {
         todoDao.setComplete(id, complete)
     }
 
+    @WorkerThread
+    suspend fun deleteTodo(id: Int) {
+        todoDao.deleteTodo(id)
+    }
+
 }

@@ -38,6 +38,12 @@ class TodoViewModel(app: Application) : AndroidViewModel(app) {
         todoRepo.insert(todo)
     }
 
+    fun deleteTodo(todoId: Int) {
+        viewModelScope.launch {
+            todoRepo.deleteTodo(todoId)
+        }
+    }
+
     fun updateFilter(option: FilterOption) {
         filterFlow.value = option
     }
