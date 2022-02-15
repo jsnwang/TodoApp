@@ -48,6 +48,7 @@ class DetailsFragment : Fragment() {
                 viewModel.checkCompleted(todo.id, cbCompleted.isChecked)
             }
         }
+        discardButton.setOnClickListener { navigateBack() }
     }
 
     private fun navigateBack() {
